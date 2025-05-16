@@ -1,0 +1,366 @@
+Table users {
+	id integer [ pk, increment, not null, unique ]
+	document varchar [ not null ]
+	fullname varchar [ not null ]
+	email varchar [ not null ]
+	phone_number numeric [ not null ]
+	active boolean [ not null, default: TRUE ]
+	passwork varchar [ not null ]
+
+	indexes {
+		(document) [ name: 'Users_index_0' ]
+	}
+}
+
+Table type_employee {
+	id integer [ pk, increment, not null, unique ]
+	name varchar [ not null, unique ]
+	create_at timestamp [ default: NOW() ]
+	modified_at timestamp
+	active boolean [ not null, default: TRUE ]
+}
+
+Table employees {
+	id integer [ pk, increment, not null, unique ]
+	type_employee_id integer [ not null ]
+	user_id integer [ not null ]
+	active boolean [ not null, default: TRUE ]
+	title varchar
+}
+
+Table maquines {
+	id integer [ pk, increment, not null, unique ]
+	name varchar [ not null ]
+	quantity integer [ not null, default: 1 ]
+	active boolean [ not null, default: TRUE ]
+	status varchar [ default: 'DISPONIBLE' ]
+	description text [ not null ]
+}
+
+Table membership {
+	id integer [ pk, increment, not null, unique ]
+	name varchar [ not null ]
+	amount decimal [ not null ]
+	period integer [ not null ]
+	create_at timestamp [ default: NOW() ]
+	modified_at timestamp
+	active boolean [ not null, default: TRUE ]
+	description text [ not null ]
+}
+
+Table services {
+	id integer [ pk, increment, not null, unique ]
+	name varchar [ not null ]
+	amount decimal
+	create_at timestamp [ default: NOW() ]
+	modified_at timestamp
+	active boolean [ not null, default: TRUE ]
+}
+
+Table countries {
+	id integer [ pk, increment, not null, unique ]
+	name varchar [ not null ]
+	active boolean [ not null, default: TRUE ]
+}
+
+Table states {
+	id integer [ pk, increment, not null, unique ]
+	country_id integer [ not null ]
+	name varchar [ not null ]
+	active boolean [ not null, default: TRUE ]
+}
+
+Table cities {
+	id integer [ pk, increment, not null, unique ]
+	state_id integer [ not null ]
+	name varchar [ not null ]
+	active boolean [ not null, default: TRUE ]
+}
+
+Table headquarters {
+	id integer [ pk, increment, not null, unique ]
+	city_id integer [ not null ]
+	name varchar [ not null ]
+	address varchar
+	active boolean [ not null, default: TRUE ]
+}
+
+Table membership_services {
+	id integer [ pk, increment, not null, unique ]
+	service_id integer [ not null ]
+	membership_id integer [ not null ]
+}
+
+Table muscular_group {
+	id integer [ pk, increment, not null, unique ]
+	name varchar [ not null ]
+	create_at timestamp [ default: NOW() ]
+	modified_at timestamp
+}
+
+Table muscle {
+	id integer [ pk, increment, not null, unique ]
+	name varchar [ not null ]
+	muscular_group_id integer [ not null ]
+	create_at timestamp [ default: NOW() ]
+	modified_at timestamp
+}
+
+Table machine_muscle {
+	id integer [ pk, increment, not null, unique ]
+	muscle_id integer [ not null ]
+	maquine_id integer [ not null ]
+}
+
+Table maintenance {
+	id integer [ pk, increment, not null, unique ]
+	machine_id integer [ not null ]
+	maintenance_date date [ not null, default: NOW() ]
+	employee_id integer [ not null ]
+	observations text
+}
+
+Table membership_user {
+	id integer [ pk, increment, not null, unique ]
+	membership_id integer [ not null ]
+	user_id integer [ not null ]
+	headquarter_id integer
+	initial_date date [ not null, default: NOW() ]
+	cut_day integer [ not null, default: 01 ]
+}
+
+Table headquarter_machine {
+	id integer [ pk, increment, not null, unique ]
+	machine_id integer [ not null ]
+	headquarter_id integer [ not null ]
+}
+
+Table headquarter_employee {
+	id integer [ pk, increment, not null, unique ]
+	headquarter_id integer [ not null ]
+	employee_id integer [ not null ]
+}
+
+Table payment {
+	id integer [ pk, increment, not null, unique ]
+	payment_detail_id integer [ not null ]
+}
+
+Table payment_detail {
+	id integer [ pk, increment, not null, unique ]
+	user_id integer [ not null ]
+	option varchar [ not null, default: 'MEMBRESIA' ]
+	amount decimal [ not null ]
+	payment_date timestamp
+	payment_status varchar [ default: 'PENDIENTE' ]
+	payment_method_id integer
+}
+
+Table payment_method {
+	id integer [ pk, increment, not null, unique ]
+	name varchar [ not null ]
+	create_at timestamp [ default: NOW() ]
+}
+
+Table exercise {
+	id integer [ pk, increment, not null, unique ]
+	name varchar [ not null ]
+	exercise_type_id integer [ not null ]
+	description text [ not null ]
+}
+
+Table exercise_muscle {
+	id integer [ pk, increment, not null, unique ]
+	exercise_id integer [ not null ]
+	muscle_id integer [ not null ]
+}
+
+Table exercise_type {
+	id integer [ pk, increment, not null, unique ]
+	name varchar [ not null ]
+}
+
+Table routine {
+	id integer [ pk, increment, not null, unique ]
+	name integer [ not null ]
+	description text [ not null ]
+	trainer_id integer
+	user_id integer [ not null ]
+}
+
+Table exercise_routine {
+	id integer [ pk, increment, not null, unique ]
+	routine_id integer [ not null ]
+	exercise_id integer [ not null ]
+	sets_count integer [ not null ]
+	reps_count integer [ not null ]
+	modified_by integer
+	modified_at timestamp
+}
+
+Table routine_type {
+	id integer [ pk, increment, not null, unique ]
+	name varchar [ not null ]
+}
+
+Table routine_routine_type {
+	id integer [ pk, increment, not null, unique ]
+	routine_id integer [ not null ]
+	routine_type_id integer [ not null ]
+}
+
+Table trainer {
+	id integer [ pk, increment, not null, unique ]
+	employee_id integer [ not null ]
+	specialitiation varchar
+	users_count integer [ not null, default: 0 ]
+	email varchar
+	phone_number numeric
+	description text [ not null ]
+}
+
+Table trainer_user {
+	id integer [ pk, increment, not null, unique ]
+	trainer_id integer [ not null ]
+	user_id integer [ not null ]
+}
+
+Ref fk_Headquarters_city_id_Cities {
+	headquarters.city_id - cities.id [ delete: no action, update: no action ]
+}
+
+Ref fk_Cities_state_id_States {
+	cities.state_id - states.id [ delete: no action, update: no action ]
+}
+
+Ref fk_States_country_id_Countries {
+	states.country_id - countries.id [ delete: no action, update: no action ]
+}
+
+Ref fk_Employees_user_id_Users {
+	employees.user_id - users.id [ delete: no action, update: no action ]
+}
+
+Ref fk_Employees_type_employee_id_TypeEmployee {
+	employees.type_employee_id - type_employee.id [ delete: no action, update: no action ]
+}
+
+Ref fk_Membership_user_user_id_Users {
+	membership_user.user_id - users.id [ delete: no action, update: no action ]
+}
+
+Ref fk_Membership_user_membership_id_Membership {
+	membership_user.membership_id - membership.id [ delete: no action, update: no action ]
+}
+
+Ref fk_membership_services_service_id_Services {
+	membership_services.service_id - services.id [ delete: no action, update: no action ]
+}
+
+Ref fk_membership_services_membership_id_Membership {
+	membership_services.membership_id - membership.id [ delete: no action, update: no action ]
+}
+
+Ref fk_maintenance_machine_id_Maquines {
+	maintenance.machine_id - maquines.id [ delete: no action, update: no action ]
+}
+
+Ref fk_maintenance_employee_id_Employees {
+	maintenance.employee_id - employees.id [ delete: no action, update: no action ]
+}
+
+Ref fk_machine_muscle_maquine_id_Maquines {
+	machine_muscle.maquine_id - maquines.id [ delete: no action, update: no action ]
+}
+
+Ref fk_muscle_muscular_group_id_muscular_group {
+	muscle.muscular_group_id - muscular_group.id [ delete: no action, update: no action ]
+}
+
+Ref fk_headquarter_machine_machine_id_Maquines {
+	headquarter_machine.machine_id - maquines.id [ delete: no action, update: no action ]
+}
+
+Ref fk_headquarter_machine_headquarter_id_Headquarters {
+	headquarter_machine.headquarter_id - headquarters.id [ delete: no action, update: no action ]
+}
+
+Ref fk_headquarter_employee_headquarter_id_Headquarters {
+	headquarter_employee.headquarter_id - headquarters.id [ delete: no action, update: no action ]
+}
+
+Ref fk_headquarter_employee_employee_id_Employees {
+	headquarter_employee.employee_id - employees.id [ delete: no action, update: no action ]
+}
+
+Ref fk_Membership_user_headquarter_id_Headquarters {
+	membership_user.headquarter_id - headquarters.id [ delete: no action, update: no action ]
+}
+
+Ref fk_payment_payment_detail_id_payment_detail {
+	payment.payment_detail_id - payment_detail.id [ delete: no action, update: no action ]
+}
+
+Ref fk_payment_detail_user_id_Users {
+	payment_detail.user_id - users.id [ delete: no action, update: no action ]
+}
+
+Ref fk_payment_detail_payment_method_id_payment_method {
+	payment_detail.payment_method_id - payment_method.id [ delete: no action, update: no action ]
+}
+
+Ref fk_exercise_muscle_muscle_id_muscle {
+	exercise_muscle.muscle_id - muscle.id [ delete: no action, update: no action ]
+}
+
+Ref fk_exercise_muscle_exercise_id_exercise {
+	exercise_muscle.exercise_id - exercise.id [ delete: no action, update: no action ]
+}
+
+Ref fk_machine_muscle_muscle_id_muscle {
+	machine_muscle.muscle_id - muscle.id [ delete: no action, update: no action ]
+}
+
+Ref fk_exercise_exercise_type_id_exercise_type {
+	exercise.exercise_type_id - exercise_type.id [ delete: no action, update: no action ]
+}
+
+Ref fk_exercise_routine_routine_id_routine {
+	exercise_routine.routine_id - routine.id [ delete: no action, update: no action ]
+}
+
+Ref fk_exercise_routine_exercise_id_exercise {
+	exercise_routine.exercise_id - exercise.id [ delete: no action, update: no action ]
+}
+
+Ref fk_routine_user_id_Users {
+	routine.user_id - users.id [ delete: no action, update: no action ]
+}
+
+Ref fk_routine_routine_type_routine_type_id_routine_type {
+	routine_routine_type.routine_type_id - routine_type.id [ delete: no action, update: no action ]
+}
+
+Ref fk_routine_routine_type_routine_id_routine {
+	routine_routine_type.routine_id - routine.id [ delete: no action, update: no action ]
+}
+
+Ref fk_trainer_employee_id_Employees {
+	trainer.employee_id - employees.id [ delete: no action, update: no action ]
+}
+
+Ref fk_trainer_user_trainer_id_trainer {
+	trainer_user.trainer_id - trainer.id [ delete: no action, update: no action ]
+}
+
+Ref fk_trainer_user_user_id_Users {
+	trainer_user.user_id - users.id [ delete: no action, update: no action ]
+}
+
+Ref fk_routine_trainer_id_trainer {
+	routine.trainer_id - trainer.id [ delete: no action, update: no action ]
+}
+
+Ref fk_exercise_routine_modified_by_users {
+	exercise_routine.modified_by - users.id [ delete: no action, update: no action ]
+}
