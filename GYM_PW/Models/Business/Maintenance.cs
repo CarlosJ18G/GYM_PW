@@ -7,5 +7,5 @@ public class Maintenance
     public string Observations { get; set; }
 
     public ICollection<Maquine> Machine { get; set; }
-    public ICollection<Employee> Employee { get; set; }
+    //public ICollection<Employee> Employee { get; set; }
 }
