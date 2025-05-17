@@ -6,6 +6,6 @@ public class Maintenance
     public int EmployeeId { get; set; }
     public string Observations { get; set; }
 
-    public Maquine Machine { get; set; }
-    public Employee Employee { get; set; }
+    public ICollection<Maquine> Machine { get; set; }
+    public ICollection<Employee> Employee { get; set; }
 }
