@@ -5,9 +5,9 @@ namespace GYM_PW.Models.User
         {
             public int Id { get; set; }
             [Required, MaxLength(255)]
-            public string Name { get; set; }
+            public required string Name { get; set; }
             public bool Active { get; set; } = true;
-            public string Description { get; set; }
+            public required string Description { get; set; }
 
             public ICollection<Employee> Employees { get; set; } = new List<Employee>();
         }
