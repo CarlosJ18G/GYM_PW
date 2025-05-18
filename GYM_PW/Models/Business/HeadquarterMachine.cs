@@ -1,5 +1,4 @@
 
-
 namespace GYM_PW.Models.Business {
     public class HeadquarterMachine {
         public int Id { get; set; }
