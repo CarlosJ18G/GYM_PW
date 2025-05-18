@@ -3,9 +3,9 @@ CREATE TABLE "users" (
 	"document" VARCHAR(12) NOT NULL,
 	"fullname" VARCHAR(100) NOT NULL,
 	"email" VARCHAR(255) NOT NULL,
-	"phone_number" NUMERIC NOT NULL,
+	"phone_number" VARCHAR(15) NOT NULL,
 	"active" BOOLEAN NOT NULL DEFAULT TRUE,
-	"passwork" VARCHAR(255) NOT NULL,
+	"password" VARCHAR(255) NOT NULL,
 	PRIMARY KEY("id")
 );
 CREATE INDEX "Users_index_0"
@@ -58,6 +58,7 @@ CREATE TABLE "services" (
 	"create_at" TIMESTAMP DEFAULT NOW(),
 	"modified_at" TIMESTAMP,
 	"active" BOOLEAN NOT NULL DEFAULT TRUE,
+	"description" TEXT,
 	PRIMARY KEY("id")
 );
 
@@ -241,7 +242,7 @@ CREATE TABLE "trainer" (
 	"specialitiation" VARCHAR(255),
 	"users_count" INTEGER NOT NULL DEFAULT 0,
 	"email" VARCHAR(255),
-	"phone_number" NUMERIC,
+	"phone_number" VARCHAR(15),
 	"description" TEXT NOT NULL,
 	PRIMARY KEY("id")
 );

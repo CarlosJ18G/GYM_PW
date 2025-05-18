@@ -3,9 +3,9 @@ Table users {
 	document varchar [ not null ]
 	fullname varchar [ not null ]
 	email varchar [ not null ]
-	phone_number numeric [ not null ]
+	phone_number varchar [ not null ]
 	active boolean [ not null, default: TRUE ]
-	passwork varchar [ not null ]
+	password varchar [ not null ]
 
 	indexes {
 		(document) [ name: 'Users_index_0' ]
@@ -55,6 +55,7 @@ Table services {
 	create_at timestamp [ default: NOW() ]
 	modified_at timestamp
 	active boolean [ not null, default: TRUE ]
+	description text
 }
 
 Table countries {
@@ -215,7 +216,7 @@ Table trainer {
 	specialitiation varchar
 	users_count integer [ not null, default: 0 ]
 	email varchar
-	phone_number numeric
+	phone_number varchar
 	description text [ not null ]
 }
 
