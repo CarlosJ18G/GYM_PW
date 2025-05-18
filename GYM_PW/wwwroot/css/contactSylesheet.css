@@ -1,9 +1,15 @@
 ﻿namespace GYM_PW.wwwroot.css
-
-.fondo--contacto {
-    background-color: #f4f4f4; /* Color de fondo plano, puedes cambiarlo a tu gusto */
-    background-repeat: no-repeat;
+/*.fondo--contacto {
+    background-color: #f4f4f4;*/ /* Color de fondo plano, puedes cambiarlo a tu gusto */
+/*background-repeat: no-repeat;
     background-size: auto;
     background-position: center;
-}
+}*/
 
+.body--image {
+    background-image: url('~/images/imagegym.jpg'); /* O desde una URL */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+}

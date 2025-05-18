@@ -37,10 +37,11 @@ body {
 }
 
 .fondo--contacto {
-    background-color: #f4f4f4; /* Color de fondo plano, puedes cambiarlo a tu gusto */
+    background-image: url('/images/imagegym.jpg'); /* O desde una URL */
+    background-size: cover;
     background-repeat: no-repeat;
-    background-size: auto;
     background-position: center;
+    min-height: 100vh;
 }
 
 .redondear--esquina {
