@@ -1,0 +1,10 @@
+@model GYM_PW.Models.User.User
+
+<form asp-action="Register" method="post">
+    <input asp-for="Fullname" placeholder="Nombre completo" />
+    <input asp-for="Email" placeholder="Correo" />
+    <input asp-for="PhoneNumber" placeholder="Teléfono" />
+    <input asp-for="Document" placeholder="Documento" />
+    <input asp-for="Password" placeholder="Contraseña" type="password" />
+    <button type="submit">Registrarse</button>
+</form>

@@ -6,18 +6,24 @@ namespace GYM_PW.Models.User
     // using GYM_PW.Models.Bill;
     public class User
         {
-            public int Id { get; set; }
-            [Required, MaxLength(12)]
-            public required string Document { get; set; }
-            [Required, MaxLength(100)]
-            public required string Fullname { get; set; }
-            [Required, MaxLength(255)]
-            public required string Email { get; set; }
-            [EmailAddress, Required]
-            public required string PhoneNumber { get; set; }
-            public bool Active { get; set; } = true;
-            [Required, MaxLength(255)]
-            public required string Password { get; set; }
+        public int Id { get; set; }
+        
+        [Required, MaxLength(12)]
+        public required string Document { get; set; }
+        
+        [Required, MaxLength(100)]
+        public required string Fullname { get; set; }
+        
+        [Required, MaxLength(255)]
+        [EmailAddress] 
+        public required string Email { get; set; }
+        
+        public string? PhoneNumber { get; set; } 
+        
+        public bool Active { get; set; } = true;
+        
+        [Required, MaxLength(255)]
+        public required string Password { get; set; }
 
         // is an interface in the .NET framework, found in the System.Collections or System.Collections.Generic namespaces. It defines a standard set of methods and properties for working with collections of objects, such as adding, removing, and counting items.
 
