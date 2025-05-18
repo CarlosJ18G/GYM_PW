@@ -59,7 +59,6 @@ public class AuthController : Controller
             return View();
         }
 
-        // Aquí deberías implementar un sistema de autenticación real
         HttpContext.Session.SetString("UserEmail", user.Email);
         TempData["UserFullName"] = user.Fullname;
 

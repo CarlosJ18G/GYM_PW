@@ -8,7 +8,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<User>(entity =>
         {
             entity.ToTable("users");
-            entity.Property(e => e.Id).HasColumnName("id"); // Añade esto
+            entity.Property(e => e.Id).HasColumnName("id"); 
             entity.Property(e => e.Document).HasColumnName("document");
             entity.Property(e => e.Fullname).HasColumnName("fullname");
             entity.Property(e => e.Email).HasColumnName("email");
