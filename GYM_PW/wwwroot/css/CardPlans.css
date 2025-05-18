@@ -22,7 +22,7 @@
 
 .plan-card .card-body {
   padding: 2rem;
-  text-align: center;
+  text-align: start;
 }
 
 .plan-card .pricing-card-title {
@@ -34,6 +34,8 @@
 .plan-card ul li::before {
   content: "⭐ ";
   color: #ffdd00;
+  align-items: start;
+  gap; 8px;
 }
 
 .plan-card .btn-outline-primary {
