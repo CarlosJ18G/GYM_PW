@@ -1,8 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+  ViewData["Title"] = "Carlos te odiamos";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="planes">
+
+@section FullWidthContent {
+    <partial name="../Components/Carrusel" />
+}
 </div>
+
+
+<div class="container">
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center"></div>
+  <h1 class="display-4">Unete a nosotros</h1>
+  <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example.
+    It's built with default Bootstrap components and utilities with little customization.</p>
+</div>
+
+@* content de cards de membresias *@
+
+<partial name="../Components/PlanCards" />
+

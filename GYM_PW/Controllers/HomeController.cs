@@ -23,6 +23,16 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Contactame()
+    {
+        return View();
+    }
+
+    public IActionResult PlanCards()
+    {
+        return View();
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

@@ -7,7 +7,7 @@ namespace GYM_PW.Models.User
             public int TypeEmployeeId { get; set; }
             public int UserId { get; set; }
             public bool Active { get; set; } = true;
-            public string Title { get; set; }
+            public string? Title { get; set; }
 
             public TypeEmployee TypeEmployee { get; set; }
             public User User { get; set; }

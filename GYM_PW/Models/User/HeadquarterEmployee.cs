@@ -8,6 +8,6 @@ namespace GYM_PW.Models.User {
         public int HeadquarterId { get; set; }
 
         public ICollection<Employee> Employee { get; set; }
-        public ICollection<Headquarter> Headquarter { get; set; }
+        // public ICollection<Headquarter> Headquarter { get; set; }
     }
 }

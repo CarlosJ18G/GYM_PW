@@ -1,0 +1,26 @@
+/* mis estilos */
+.carousel-inner img {
+  object-fit: cover;
+  object-position: top;
+  margin: 0 !important;
+  padding: 0 !important;
+  /* width: 100%; */
+}
+
+.carousel {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+.carousel img {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
+
+
+.carousel-item img {
+    height: 600px;
+    object-fit: cover;
+}
