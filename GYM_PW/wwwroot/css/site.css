@@ -29,3 +29,18 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+.fondo--contacto {
+    background-color: #f4f4f4; /* Color de fondo plano, puedes cambiarlo a tu gusto */
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+}
+
+.redondear--esquina {
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+

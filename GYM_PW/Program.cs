@@ -1,7 +1,11 @@
+using GYM_PW.Interfaces;
+using GYM_PW.InterfazServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IEmailService, EmailService>();
 
 var app = builder.Build();
 

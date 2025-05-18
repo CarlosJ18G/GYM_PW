@@ -6,7 +6,7 @@ namespace GYM_PW.Models.Business {
         public int HeadquarterId { get; set; }
         public int MachineId { get; set; }
 
-        public ICollection<Headquarter> Headquarter { get; set;}
-        public ICollection<Machine> Machine { get; set;}
+        //public ICollection<Headquarter> Headquarter { get; set;}
+        //public ICollection<Machine> Machine { get; set;}
     }
 }
