@@ -1,25 +1,25 @@
 @model GYM_PW.Models.User.User
 
 @{
-    ViewData["Title"] = "SignUp";
+    ViewData["Title"] = "Registro";
 }
 
 <div class="login-card">
-    <h1 class="text-center mb-2">SIGN UP</h1>
+    <h1 class="text-center mb-2">Registrarse</h1>
     <div class="text-center person-icon mb-2 mt-0">
         <i class="bi bi-person-circle"></i>
     </div>
     <form asp-action="Register" method="post">
         <div class="mb-3">
-            <label for="DocumentNumber" class="form-label">Document Number</label>
+            <label for="DocumentNumber" class="form-label">Numero de documento</label>
             <input asp-for="Document" type="text" class="form-control" id="DocumentNumber" placeholder="1234567890">
         </div>
         <div class="mb-3">
-            <label for="Name" class="form-label">Full Name</label>
+            <label for="Name" class="form-label">Nombre Completo</label>
             <input asp-for="Fullname" type="text" class="form-control" id="Name" placeholder="Chimpanzini Bananini">
         </div>
         <div class="mb-3">
-            <label for="PhoneNumber" class="form-label">Phone Number</label>
+            <label for="PhoneNumber" class="form-label">Número de celular</label>
             <input asp-for="PhoneNumber" type="text" class="form-control" id="PhoneNumber" placeholder="3001234567">
         </div>
         <div class="mb-3">
@@ -28,12 +28,12 @@
         </div>
         <div class="mb-3">
             <label for="Password" class="form-label">Password</label>
-            <input asp-for="Password" type="password" class="form-control" id="Password" placeholder="Enter password">
+            <input asp-for="Password" type="password" class="form-control" id="Password" placeholder="Ingresa una contraseña segura">
         </div>
-        <button type="submit" class="btn btn-login w-100">SIGN UP</button>
+        <button type="submit" class="btn btn-login w-100">Registrar</button>
 
         <div class="divider my-3">
-            <span class="text-muted">OR</span>
+            <span class="text-muted">Registrarse con:</span>
         </div>
 
         <div class="text-center social-icons mb-3">
@@ -43,7 +43,7 @@
         </div>
 
         <div class="text-center">
-            <span style="font-size: 0.9em;">Already have an account <a asp-area="" asp-controller="Auth" asp-action="Login">SIGN IN</a></span>
+            <span style="font-size: 0.9em;">Ya tengo cuenta <a asp-area="" asp-controller="Auth" asp-action="Login">Iniciar sesión</a></span>
         </div>
     </form>
 </div>
