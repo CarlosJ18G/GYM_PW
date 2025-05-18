@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 public class AuthController : Controller
 {
@@ -18,7 +20,7 @@ public class AuthController : Controller
     public IActionResult Register() => View();
 
     [HttpPost]
-    public async Task<IActionResult> Register(User user) // Cambia a async Task
+    public async Task<IActionResult> Register(User user)
     {
         if (!ModelState.IsValid) return View(user);
 
@@ -30,7 +32,7 @@ public class AuthController : Controller
 
         user.Password = HashPassword(user.Password);
         _context.Users.Add(user);
-        await _context.SaveChangesAsync(); // Añade await
+        await _context.SaveChangesAsync();
 
         return RedirectToAction("Login");
     }
@@ -39,10 +41,17 @@ public class AuthController : Controller
     public IActionResult Login() => View();
 
     [HttpPost]
-    public IActionResult Login(string email, string password)
+    public async Task<IActionResult> Login(string email, string password)
     {
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+        {
+            ModelState.AddModelError(string.Empty, "Email y contraseña son requeridos");
+            return View();
+        }
+
         var hashedPassword = HashPassword(password);
-        var user = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == hashedPassword);
+        var user = await _context.Users
+            .FirstOrDefaultAsync(u => u.Email == email && u.Password == hashedPassword);
 
         if (user == null)
         {
@@ -50,9 +59,27 @@ public class AuthController : Controller
             return View();
         }
 
-        // Aquí podrías usar Session, TempData o cookies para guardar el estado de login
+        // Aquí deberías implementar un sistema de autenticación real
+        HttpContext.Session.SetString("UserEmail", user.Email);
         TempData["UserFullName"] = user.Fullname;
 
+            var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, user.Fullname),
+            new Claim(ClaimTypes.Email, user.Email)
+        };
+
+        var identity = new ClaimsIdentity(claims, "Cookies");
+        await HttpContext.SignInAsync("Cookies", new ClaimsPrincipal(identity));
+
+        return RedirectToAction("Index", "Home");
+    }
+
+
+    [HttpPost]
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync("Cookies");
         return RedirectToAction("Index", "Home");
     }
 
