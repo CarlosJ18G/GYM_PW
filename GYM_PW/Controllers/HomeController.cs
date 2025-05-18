@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using GYM_PW.Models;
+using GYM_PW.Views.ContactView;
 
 namespace GYM_PW.Controllers;
 
@@ -22,6 +23,8 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult Index1() { return View(); }
+
 
     public IActionResult Contactame()
     {
