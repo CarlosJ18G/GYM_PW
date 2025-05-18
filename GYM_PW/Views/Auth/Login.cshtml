@@ -1,26 +1,26 @@
 @{
-    ViewData["Title"] = "SignIn";
+    ViewData["Title"] = "Inicio de sesion";
 }
 
 <div class="login-card">
-    <h1 class="text-center mb-2">SIGN IN</h1>
+    <h1 class="text-center mb-2">Inicia Sesion</h1>
     <div class="text-center person-icon mb-2 mt-0">
         <i class="bi bi-person-circle"></i>
     </div>
     <form asp-action="Login" method="post">
         <div class="mb-3">
             <label for="Email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="Email" name="email" placeholder="Enter email" required>
+            <input type="email" class="form-control" id="Email" name="email" placeholder="Ingresa tu email" required>
         </div>
         <div class="mb-3">
-            <label for="Password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="Password" name="password" placeholder="Enter password" required>
+            <label for="Password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="Password" name="password" placeholder="Ingresa tu contraseña" required>
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="remember">
-            <label class="form-check-label" for="remember">Remember me?</label>
+            <label class="form-check-label" for="remember">¿Recordar inicio de sesión?</label>
         </div>
-        <button type="submit" class="btn btn-login w-100">LOGIN</button>
+        <button type="submit" class="btn btn-login w-100">Ingresar</button>
 
         @if (!ViewData.ModelState.IsValid)
         {
@@ -30,11 +30,11 @@
         }
 
         <div class="text-end mt-2">
-            <a href="#" class="text-muted" style="font-size: 0.9em;">Forgot Password?</a>
+            <a href="#" class="text-muted" style="font-size: 0.9em;">Olvide mi contraseña</a>
         </div>
 
-        <div class="divider my-3">
-            <span class="text-muted">OR</span>
+        <div class="divider my-2">
+            <span class="text-muted">Ingresar con:</span>
         </div>
 
         <div class="text-center social-icons mb-3">
@@ -44,7 +44,7 @@
         </div>
 
         <div class="text-center">
-            <span style="font-size: 0.9em;">Need an account? <a asp-area="" asp-controller="Auth" asp-action="Register">SIGN UP</a></span>
+            <span style="font-size: 0.9em;">¿No tines cuenta? <a asp-area="" asp-controller="Auth" asp-action="Register">Registrarse</a></span>
         </div>
     </form>
 </div>
