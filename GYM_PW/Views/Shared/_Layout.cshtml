@@ -38,6 +38,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Contact" asp-action="Contacto">Contacto</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Geography" asp-action="PruebaGeo">Paises</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Machines" asp-action="Machines">Maquinas info</a>
+                        </li>
                     </ul>
                     
                     <ul class="navbar-nav">
@@ -88,7 +94,9 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

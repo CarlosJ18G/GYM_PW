@@ -1,3 +1,4 @@
+using GYM_PW.Models.Business;
 public class Maintenance
 {
     public int Id { get; set; }
@@ -6,6 +7,6 @@ public class Maintenance
     public int EmployeeId { get; set; }
     public string Observations { get; set; }
 
-    public ICollection<Maquine> Machine { get; set; }
+    public ICollection<Machine> Machine { get; set; }
     // public ICollection<Employee> Employee { get; set; }
 }

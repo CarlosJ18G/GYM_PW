@@ -1,0 +1,32 @@
+﻿@model GYM_PW.Models.Business.Machine
+
+<div id="createMachineCard" class="card slide-in-card" style="display:none;">
+    <div class="card-body">
+        <h5 class="card-title">Agregar Nueva Máquina</h5>
+        <form id="createMachineForm" method="post">
+            @Html.AntiForgeryToken()
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" id="Name" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Quantity" class="form-label"></label>
+                <input asp-for="Quantity" class="form-control" id="Quantity" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Status" class="form-label"></label>
+                <input asp-for="Status" class="form-control" id="Status" />
+            </div>
+            <div class="mb-3 form-check">
+                <input asp-for="Active" class="form-check-input" type="checkbox" id="check" />
+                <label asp-for="Active" class="form-check-label"></label>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label"></label>
+                <input asp-for="Description" class="form-control" id="Description" />
+            </div>
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <button type="button" class="btn btn-secondary" id="closeCreateCard">Cancelar</button>
+        </form>
+    </div>
+</div>

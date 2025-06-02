@@ -1,0 +1,17 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "GeographyCountries";
+}
+
+<h2 class="my-3">Listado de países</h2>
+
+<div class="container">
+    <select class="form-select my-3">
+        @foreach (var nombrePais in Model)
+        {
+            <option>@nombrePais</option>
+        }
+    </select>
+</div>
+

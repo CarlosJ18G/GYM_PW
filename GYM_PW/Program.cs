@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using GYM_PW.Models.Ser_viceGym;
+using GYM_PW.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,9 +15,17 @@ builder.Services.AddControllersWithViews();
 // Configuración del servicio de email
 builder.Services.AddTransient<IEmailService, EmailService>();
 
+//Configuracion para servicio de geography
+builder.Services.AddHttpClient<IGeographyService>();
+
 // Configuración de DbContext para PostgreSQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//builder.Services.AddHttpClient<IMachineApiService, MachineApiService>();
+
+// Configuración de servicios para las maquinas
+builder.Services.AddHttpClient<IMachineApiService>();
 
 // Configuración de sesión
 builder.Services.AddSession(options =>

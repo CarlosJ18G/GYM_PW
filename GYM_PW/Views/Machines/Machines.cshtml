@@ -1,0 +1,109 @@
+﻿@model List<GYM_PW.Models.Business.Machine>;
+@{
+    ViewData["Title"] = "Máquinas";
+}
+<form id="antiForgeryForm" style="display:none;">
+    @Html.AntiForgeryToken()
+</form>
+<h2>Listado de Máquinas</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Estado</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var machine in Model)
+        {
+            <tr>
+                <td>@machine.Id</td>
+                <td>@machine.Name</td>
+                <td>@machine.Quantity</td>
+                <td>@machine.Status</td>
+                <td>@machine.Description</td>
+                <td>
+                    <a class="btn btn-warning" asp-controller="Machines" asp-action="Edit" asp-route-id="@machine.Id">Editar</a>
+                    <button class="btn btn-danger btn-delete-machine" data-id="@machine.Id" type="button">Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div id="createMachineContainer"></div>
+<div>
+    <div class="row align-items-center justify-content-center mb-4">
+        <div class="col">
+            <button class="btn btn-primary" id="showCreateMachine" type="button">Agregar Nueva Máquina</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#showCreateMachine').click(function (e) {
+                e.preventDefault();
+                console.log("Intentando obtener vista parcial para crear máquina...");
+
+                $.get('@Url.Action("CreateMachinePartial", "Machines")', function (data) {
+                    console.log("Vista parcial obtenida exitosamente.");
+                    $('#createMachineContainer').html(data);
+                    $('#createMachineCard').show().addClass('slide-in');
+                }).fail(function () {
+                    console.error("Error al obtener vista parcial.");
+                });
+            });
+
+            $(document).on('click', '#closeCreateCard', function () {
+                $('#createMachineCard').removeClass('slide-in').hide();
+            });
+
+            $(document).on('submit', '#createMachineForm', function (e) {
+                e.preventDefault();
+                var form = $(this);
+                console.log("Enviando datos del formulario:", form.serialize());
+
+                $.ajax({
+                    url: '@Url.Action("Create", "Machines")',
+                    type: 'POST',
+                    data: form.serialize(),
+                    success: function (result) {
+                        console.log("Máquina creada exitosamente.");
+                        alert('Máquina agregada exitosamente.');
+                        location.reload();
+                    },
+                    error: function (xhr) {
+                        console.error("Error al crear máquina:", xhr.responseText);
+                        alert('Error al agregar la máquina.');
+                    }
+                });
+            });
+
+            $(document).on('click', '.btn-delete-machine', function () {
+            var id = $(this).data('id');
+            if (confirm('¿Estás seguro de que deseas eliminar esta máquina?')) {
+                $.ajax({
+                    url: '@Url.Action("Delete", "Machines")/' + id,
+                    type: 'POST',
+                    data: {
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function () {
+                        alert('Máquina eliminada exitosamente.');
+                        location.reload();
+                    },
+                    error: function (xhr) {
+                        alert('Error al eliminar la máquina.');
+                        console.error("error log \n"+xhr.responseText);
+                    }
+                });
+                }
+            });
+        });
+    </script>
+}
+
