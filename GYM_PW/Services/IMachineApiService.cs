@@ -9,12 +9,13 @@
     public class IMachineApiService
     {
         private readonly HttpClient _httpClient;
+        private readonly IConfiguration _config;
 
-
-        public IMachineApiService(HttpClient httpClient)
+        public IMachineApiService(HttpClient httpClient, IConfiguration config)
         {
             _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("https://localhost:7133/"); // Cambia la URL si tu API está en otro lado
+            _config = config;
+            _httpClient.BaseAddress = new Uri(_config.GetValue<string>("ApiMachines:Url"));
         }
 
         public async Task<List<Machine>> GetAllAsync()

@@ -1,0 +1,47 @@
+@GestionMaquinas_HostAddress = https://localhost:7133
+
+GET {{GestionMaquinas_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{GestionMaquinas_HostAddress}}/api/machines
+
+###
+
+POST {{GestionMaquinas_HostAddress}}/api/machines
+Content-Type: application/json
+
+{
+   "name": "Machionepene",
+   "quantity": 1000,
+   "active": true,
+   "description": "PucioMachine is used for train pucio",
+   "status": "VERY USED"
+}
+
+###
+
+GET {{GestionMaquinas_HostAddress}}/api/machines/1
+//Probar con la id de la máquina hacksquat
+###
+
+
+PUT {{GestionMaquinas_HostAddress}}/api/machines/1
+Content-Type: application/json
+//Modificar la máquina hacksquat, se le agregara 1 mas a la cantidad
+{
+    "id": 1,
+    "name": "HackSquat",
+    "quantity": 1,
+    "active": true,
+    "description": "HackSquat is used for train lower body",
+    "status": "DISPONIBLE"
+}
+
+###
+
+//Para eliminar un elemento, colocar el id de la máquina que se quiere eliminar
+DELETE {{GestionMaquinas_HostAddress}}/api/machines/5
+
+###
